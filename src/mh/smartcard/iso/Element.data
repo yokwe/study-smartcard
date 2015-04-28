@@ -1,0 +1,243 @@
+#
+# Element.data
+#
+
+# See Element.LINE for format of line
+
+# ABBREVIATION
+#   AFI    APPLICATION-FAMILY-IDENTIFICATION
+#   APPL   APPLICATION
+#   ATTR   ATTRIBUTE
+#   AUTH   AUTHENTICATION
+#   BIC    BANK IDENTIFIER CODE
+#   BIO    BIOMETRIC
+#   CERT   CERTIFICATE
+#   CONFIG CONFIGURATION
+#   CRYPT  CRYPTOGRAPHIC
+#   DISC   DISCRETIONARY
+#   ENV    ENVIRONMENT
+#   IBAN   INTERNATIONAL BANK ACCOUNT NUMBER
+#   IC     INTEGRATED CIRCUIT
+#   ID     IDENTIFIER
+#   IIN    ISSUER IDENTIFICATION NUMBER
+#   INFO   INFORMATION
+#   LANG   LANGUAGE
+#   PAN    PRIMARY ACCOUNT NUMBER
+#   PREF   PREFERENCES
+#   PROP   PROPRIEATRY
+#   REF    REFERENCE
+#   REQ    REQUIREMENTS
+#   SEQ    SEQUENCE
+#   SFI    SHORT EF IDENTIFIER
+#   TAA    TAG ALLOCATION AUTHORITY
+#   TEMP   TEMPLATE
+#   URL    UNIFORM RESOURCE LOCATOR
+
+
+#
+# ISO 7816-6:2004/Cor.1:2006  PAGE 2
+#
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+ISO::AFI                                    49  HEX                            -  # 00..0F; Designation of several application areas to enable global interoperability (see ISO/IEC 14443)
+ISO::IBAN                                 5F53  HEX                           6E  # an..34; A number that used internationally to uniquely identify the account of a customer at a financial institution (see ISO 13616)
+ISO::BIC                                  5F54  HEX                           6E  # an8 or 11; A universal Bank Identifier Code for use in automated processing in banking and related financial environments (see ISO 9362)
+ISO::COUNTRY-CODE-2                       5F55  HEX                           66  # a2; Indication of a country (see ISO 3166-1)
+ISO::COUNTRY-CODE-3                       5F56  HEX                           66  # a2; Indication of a country (see ISO 3166-1)
+ISO::ACCOUNT-TYPE                         5F57  HEX                           6E  # n2; Indicates the type of account selected by the cardholder for the transaction (see EMV for coding)
+
+
+#
+# ISO 7816-6:2004  PAGE 3  --  6.5 Login template
+#
+ISO::QUALIFIER                              80  HEX                           6A  # Qualifier
+ISO::NUMBER                                 81  HEX                           6A  # Number
+ISO::TEXT                                   82  ASCII                         6A  # Text
+ISO::DISPLAY-INDICATORS-83                  83  HEX                           6A  # 1 byte; Display indicators
+ISO::DISPLAY-INDICATORS-84                  84  HEX                           6A  # 1 byte; Display indicators
+
+
+#
+# ISO 7816-6:2004  PAGE 7  --  9 Interindustry data elements in alphabetic order
+#
+ISO::ADDRESS                              5F42  HEX                           65  # Address of individual
+ISO::ANSWER-TO-RESET                      5F51  HEX                            -  # Up to 32 bytes; Answer To Reset Indicate operating characteristic of the card
+ISO::APPL-EFFECTIVE-DATE                  5F25  HEX                           6E  # YYMMDD; Date from which the application can be used, under the responsibility of the application provider
+ISO::APPL-EXPIRATION-DATE                 5F24  HEX                           6E  # YYMMDD; Date from which the application expires, under the responsibility of the application provider
+ISO::APPL-ID                                4F  AID                    61, 6E, -  # Application identifier; Data element identify an application in the card
+ISO::APPL-IMAGE                           5F44  HEX                           6D  # Icon or logo associated with an application
+ISO::APPL-IMAGE-TEMP                        6D  TEMP                          6E  # Template nesting at least application image
+ISO::APPL-LABEL                             50  ASCII                     61, 6E  # Data element for use at the man-machine interface
+ISO::APPL-RELATED-DATA                      6E  TEMP                           -  # Template nesting parameters of an application
+ISO::APPL-TEMP                              61  TEMP                           -  # Template identifying an application in the card
+ISO::AUTH-DATA                              67  TEMP                          66  # Template nesting authentication data and parameters
+ISO::BIO-INFO-TEMP                        7F60  TEMP                           -  # Template nesting biometric information data objects
+ISO::BIO-INFO-GROUP-TEMP                  7F61  TEMP                           -  # Template used for nesting biometric information template
+ISO::BIO-DATA-TEMP                        7F2E  TEMP                        7F60  # Template nesting biometric reference data objects
+ISO::CARD-CAPABILITIES                      47  HEX                        66, -  # Data element fixing card behaviors
+ISO::CARD-DATA                              66  TEMP                           -  # Template nesting data related to he card
+ISO::CARD-EFFECTIVE-DATE                  5F26  HEX                           66  # YYMMDD; Date from which the card can be used, under the responsibility of the card issuer
+ISO::CARD-EXPIRATION-DATE                   59  HEX                           66  # YYMM; Date after which the card expires
+ISO::CARD-ISSUERS-DATA                      45  HEX                        66, -  # Proprietary
+ISO::CARD-SEQ-NUMBER                      5F34  HEX                           66  # n 2; Number distinguishing between separate cards with the same primary account number
+ISO::CARD-SERVICE-DATA                      43  HEX                            -  # one byte; Indication of methods available in the card for supporting services
+ISO::CARDHOLDER-BIO-DATA                  5F2E  HEX                           65  # Biometric data related to the cardholder
+ISO::CARDHOLDER-CERT                      7F21  TEMP                          65  # Template nesting the cardholder public key, further information, signature of certification authority
+
+
+#
+# ISO 7816-6:2004  PAGE 8  --  9 Interindustry data elements in alphabetic order
+#
+ISO::CARDHOLDER-SIGNATURE-IMAGE           5F43  HEX                           6C  # Image of the cardholder's handwritten signature (see ISO/IEC 11544)
+ISO::CARDHOLDER-IMAGE-TEMP                  6C  TEMP                          65  # Cardholder related images store within the card
+ISO::CARDHOLDER-NAME                      5F20  ASCII                         65  # n 2..26; Name of the cardholder
+ISO::CARDHOLDER-NATIONALITY               5F2C  HEX                           65  # n 3; Nationality of the cardholder (coding defined in ISO/IEC 7813)
+ISO::CARDHOLDER-PORTRATE-IMAGE            5F40  HEX                           6C  # Encoded image data, used for the cardholder portrait image(format defined in ISO/IEC 10918-1)
+ISO::CARDHOLDER-PRIVATE-KEY               5F48  HEX                           65  # Data element containing the cardholder's private key for digital signature functionality using asymmetric mechanisms
+ISO::CARDHOLDER-PRIVATE-KEY-TEMP          7F48  TEMP                          65  # Template nesting private key related data objects
+ISO::CARDHOLDER-PUBLIC-KEY                5F49  HEX                           65  # Data element containing the cardholder's public key data elements for digital signature functionality using asymmetric mechanisms
+ISO::CARDHOLDER-PUBLIC-KEY-TEMP           7F49  TEMP                          65  # Template containing the cardholder's public key data objects for digital signature functionality using asymmetric mechanisms
+ISO::CARDHOLDER-RELATED-DATA                65  TEMP                           -  # Template nesting data related to the cardholder
+ISO::CARDHOLDER-REQ-EXCLUDED-FEATURES     7F23  HEX                           65  # Data element containing cardholder's requirements for excluded feature e.g. cardholder is not able to use fingerprint verification (see EN 1332-4 for further information on coding of user requirements)
+ISO::CARDHOLDER-REQ-INCLUDED-FEATURES     7F22  HEX                           65  # Data element containing a cardholder's requirements for included feature e.g cardholder requires audio assistance form an ATM (see EN 1332-4 for further information on coding of user requirements)
+ISO::CERT-CONTENT                         5F4E  HEX                         7F21  # Data element containing the content of a certificate
+ISO::CERT-CONTENT-TEMP                    7F4E  TEMP                           -  # Template for nesting certificate content data objects
+ISO::CERT-HOLDER-AUTHORISATION            5F4C  HEX                            -  # a certificate folder authorization (e.g a role identifier) may be contained in a data element or data object with tag '5F4C'
+ISO::COEXISTENT-TAA                         79  TEMP                           -  # Template used to identify a coexistent tag allocation scheme and the authority responsible for the scheme
+ISO::COMMAND-TO-PERFORM                     52  HEX                           61  # Command APDU
+ISO::COMPATIBLE-TAA                         78  TEMP                           -  # Template used to identify a compatible tag allocation scheme and the authority responsible for the scheme
+ISO::COUNTRY-CODE                         5F28  HEX                           66  # n 3; Indication of a country (coding and registration defined in ISO 3166-1)
+
+
+#
+# ISO 7816-6:2004  PAGE 9  --  9 Interindustry data elements in alphabetic order
+#
+ISO::COUNTTY-CODE-AND-NATIONAL-DATA         41  HEX                        66, -  # Indication of a country followed by national data (coding and registration defined in ISO 3166-1) and optional national data
+ISO::CURRENCY-CODE                        5F2A  HEX                           6E  # a 3 or n 3; Code for the representation of currencies and funds (see ISO 4217)
+ISO::CURRENCY-EXPONENT                    5F36  HEX                           6E  # n 1; Number by which and amount of the currency indicated in the card shall be multiplied (see ISO 4217)
+ISO::DATE-OF-BIRTH                        5F2B  HEX                           65  # n 8 / YYYYMMDD; Date of birth of related individual
+ISO::DIGITAL-SIGNATURE                    5F3D  HEX                         7F3D  # Data element containing a digital signature (asymmetric or symmetric algorithm)
+ISO::DIGITAL-SIGNATURE-BLOCK              7F3D  TEMP                           -  # Template nesting digital signature related data objects
+ISO::DISC-DATA                              53  TEMP                           -  # Data element not defined in ISO/IEC 7816
+ISO::DISC-DATA-OBJECTS                      73  TEMP                           -  # Concatenation of data objects no defined in ISO/IEC 7816
+ISO::DISPLAY-CONTROL                      7F20  TEMP                          66  # Template used to control data displayed at the terminal
+ISO::DISPLAY-MESSAGE                      5F45  ASCII                         66  # Data element containing a message to display
+ISO::DYNAMIC-AUTH-TEMP                      7C  TEMP                           -  # Template used in the command and response data fields of the GENERAL AUTHENTICATE command
+ISO::DYNAMIC-EXTERNAL-AUTH                5F3B  HEX                           67  # Composite data element used for identifying the algorithm and the key to use in the EXTERNAL AUTHENTICATE command
+ISO::DYNAMIC-INTERNAL-AUTH                5F3A  HEX                           67  # Composite data element used for identifying the algorithm and the key to use in the INTERNAL AUTHENTICATE command
+ISO::DYNAMIC-MUTUAL-AUTH                  5F3C  HEX                           67  # Composite data element used for identifying the algorithm and the key to use in the mutual authentication process (see parts 2 and 3 of ISO/IEC 9798)
+ISO::ELEMENT-LIST                         5F41  HEX                            -  # Sequence of elements and related information, without identifiers (to be used only within a wrapper)
+ISO::EXTENDED-HEADER-LIST                   4D  HEX                            -  # Data element for indirectly referencing data elements
+ISO::FCI-TEMP                               6F  TEMP                           -  # Template for nesting file control parameters and file management data
+ISO::FCP-TEMP                               62  TEMP                           -  # Template for nesting file control parameters
+ISO::FILE-REF                               51  HEX                           61  # Reference to file e.g.a path
+ISO::FMD-TEMP                               64  TEMP                           -  # Template for nesting file management data
+ISO::HEADER-LIST                            5D  HEX                            -  # Concatenation of pairs of tag fields and length fields without delimitation
+ISO::HISTORIC-BYTES                       5F52  HEX                            -  # Used to indicate operating characteristics of the card
+
+
+#
+# ISO 7816-6:2004  PAGE 10  --  9 Interindustry data elements in alphabetic order
+#
+ISO::IC-MANUFACTURER-ID                   5F4D  HEX                            -  # 1 byte; Indication of a manufacturer of integrated circuits
+ISO::INITIAL-ACCESS-DATA                    44  HEX                        66, -  # Indication of a command-to-perform for retrieving the initial data string
+ISO::INTERCHANGE-CONTROL                  5F27  HEX                           66  # n 1; Indication to use in association with a country code to indicate whether international interchange is permitted on a card (see ISO 4909)
+ISO::INTERCHANGE-PROFILE                  5F29  HEX                           67  # Data element describing capabilities available in the card to perform an interchange transaction
+ISO::IIN                                    42  HEX                            -  # Data element for identifying the card issuer, possibly followed by more data.
+ISO::LANG-PREF                            5F2D  ASCII                         65  # a 2 .. a 8; Indication, in order of preference, of up to four languages for he cardholder (see ISO 639)
+ISO::LOGIN-DATA                             5E  HEX                           6E  # Proprietary information intended for connecting the interface device to a remote host, a remote server or an application within these devices
+ISO::LOGIN-TEMP                             6A  TEMP                          6E  # Template conveying data intended for connecting the interface device to a remote server or an application within such device
+ISO::MESSAGE-REF                          5F47  HEX                           66  # Date element specifying the reference of a message
+ISO::NAME                                   5B  ASCII                         65  # a ... 39; Name of an individual (structure and coding defined in ISO/IEC 7501-1)
+ISO::OBJECT-ID                              06  ISO::OID                       -  # Indication of a standard (coding defined in ISO/IEC 8825-1)
+ISO::OFFSET-DATA-OBJECT                     54  HEX                            -  # For use with commands using an odd INS code
+ISO::PIN-USAGE-POLICY                     5F2F  HEX                           6E  # Indication whether PIN entry is require and under what circumstances
+ISO::PRE-ISSUING-DATA                       46  HEX                            -  # Proprietary, see ISO/IEC 7816-4
+ISO::PAN                                    5A  HEX                           6E  # n..19; Number identifying a customer account or card (structure defined in SIO/IEC 7812 and coding in ISO 8853)
+ISO::PUBLIC-KEY-OF-CERT-AUTHORITY         5F4A  HEX                           65  # Data element containing the certificate authority's public key for digital signature functionality used to verify certificate
+ISO::QUALIFIED-NAME                         6B  TEMP                          65  # Template nesting the name of an individual and related information e.g., sex, date of birth etc
+ISO::SECURE-MESSAGE-TEMP                    7D  TEMP                           -  # Template nesting secure messaging data objects
+ISO::SECURITY-ENV-TEMP                      7B  TEMP                           -  # Template nesting components of a security environment
+ISO::SECURITY-SUPPORT-TEMP                  7A  TEMP                           -  # Template nesting encapsulating counters and auxiliary data
+
+
+#
+# ISO 7816-6:2004  PAGE 11  --  9 Interindustry data elements in alphabetic order
+#
+ISO::SERVICE-CODE                         5F30  HEX                           6E  # n 3; Identification of geographic / service availability (structure defined in ISO/IEC 7813 and coding ISO 8583)
+ISO::SEX                                  5F35  HEX                           65  # 1 byte; Gender of an individual (see ISO 5218)
+ISO::SPECIAL-USER-REQUIREMENTS              68  TEMP                          65  # Template containing at least a tag allocation authority (tag '06', '41', '42' or '4F') and a data object by which this authority indicates the user requirements, possibly related to a disability
+ISO::STATIC-INTERNAL-AUTH                 5F37  HEX                           67  # Data element containing a digital signature value which may be used either alone or in conjunction which tags '5F39', to derive a public key value
+ISO::STATIC-INTERNAL-AUTH-FIRST-DATA      5F38  HEX                           67  # Public key certificate data element to use either alone or in conjunction with the tag '5F39', to derive a public key value
+ISO::STATIC-INTERNAL-AUTH-SECOND-DATA     5F39  HEX                           67  # Data auxiliary to the public key certificate, tag '5F38', used to derive the notarised public key
+ISO::STATUS-INFO                            48  HEX                            -  # 1..3 byte; Information on card life cycle status and processing status
+ISO::TAG-LIST                               5C  HEX                            -  # Concatenation of tag fields without delimitation
+ISO::TEMP-70                                70  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-71                                71  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-72                                72  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-74                                74  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-75                                75  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-76                                76  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-77                                77  TEMP                           -  # Templates nesting non-interindustry data object
+ISO::TEMP-7E                                7E  TEMP                           -  # Template nesting interindustry data object
+ISO::TIMER                                5F46  HEX                           66  # 2 bytes, binary coded most significant byte first; Data element specifying the maximal time, in tenths of a second, for performing or executing a process
+ISO::TRACK1-APPL                            56  HEX                           6E  # ans..76; Structure defined in ISO/IEC 7813 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined therein
+ISO::TRACK1-CARD                          5F21  HEX                           66  # ans..76; Structure defined in ISO/IEC 7813 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined therein. The data content is the same as track 1 of the magnetic stripe, including discretionary data.
+ISO::TRACK2-APPL                            57  HEX                           6E  # n..37; Structure defined in ISO/IEC 7813 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined therein
+ISO::TRACK2-CARD                          5F22  HEX                           66  # n..37; Structure defined in ISO/IEC 7813 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined threin. The data content is the same as track 2 of the magnetic stripe, including descretionary data.
+
+
+#
+# ISO 7816-6:2004  PAGE 12  --  9 Interindustry data elements in alphabetic order
+#
+ISO::TRACK3-APPL                            58  HEX                           6E  # n..104; Structure defined in ISO 4909 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined therein.
+ISO::TRACK3-CARD                          5F23  HEX                           66  # n..104; Structure defined in ISO 4909 and coding in ISO 8583, including field separators but excluding start and end sentinels and longitudinal check characters as defined therein. The data content is the same as track 3 of the magnetic stripe, including discretionary data.
+ISO::TRANSACTION-COUNTER                  5F32  HEX                           6E  # Counter incremented under the control of the application in the card after each transaction
+ISO::TRANSACTION-DATE                     5F33  HEX                           6E  # n 4 / YDDD or n10 / YDDDHHMMSS; Used to recognise the date and time of the last transaction. Length is 4 for YDD and 10 for full field
+ISO::URL                                  5F50  ASCII                          -  # Uniform resource locator (URL, as defined in RFC 1738 and 2396)
+ISO::WRAPPER                                63  TEMP                           -  # Template for indirect referencing and retrieval of data elements
+
+
+#
+# ISO 7816-4  PAGE 20  --  5.3.3 File control information
+#
+ISO::SIZE-EXCLUDE-STRUCTURAL-INFO           80  HEX                       62, 6F  # Number of data bytes in the file, excluding structural information
+ISO::SIZE-INCLUDE-STRUCTURAL-INFO           81  HEX                       62, 6F  # 2 bytes; Number of data bytes in the file, including structural information if any
+ISO::FILE-DESCRIPTOR                        82  HEX                       62, 6F  # 1..6; File descriptor byte and related information if any
+ISO::FILE-ID                                83  HEX                       62, 6F  # File identifier
+ISO::DF-NAME                                84  HEX                       62, 6F  # 1..16; DF name
+ISO::PROP-INFO-NOT-BER                      85  HEX                       62, 6F  # Proprietary information not encoded in BER-TLV
+ISO::SECURITY-ATTR-PROP                     86  HEX                       62, 6F  # Security attribute in proprietary format
+ISO::FILE-ID-EXTENSION-OF-FCI               87  HEX                       62, 6F  # 2 bytes; Identifier of an EF containing an extension of the file control information
+ISO::SFI                                    88  HEX                       62, 6F  # 0 or 1 byte; Short EF identifier
+ISO::LIFE-CYCLE-STATUS                      8A  HEX                       62, 6F  # 1 byte; Life cycle status byte (LCS byte)
+ISO::SECURITY-ATTR-EXPANDED                 8B  HEX                       62, 6F  # Security attribute referencing the expanded format
+ISO::SECURITY-ATTR-COMPACT                  8C  HEX                       62, 6F  # Security attribute in compact format
+ISO::FILE-ID-SECURITY-ENV                   8D  HEX                       62, 6F  # Identifier of an EF containing security environment templates
+ISO::CHANNEL-SECURITY-ATTR                  8E  HEX                       62, 6F  # Channel security attribute
+ISO::SECURITY-ATTR-DATA-OBJECT              A0  TEMP                      62, 6F  # Security attribute template for data objects
+ISO::SECURITY-ATTR-PROP-TEMP                A1  TEMP                      62, 6F  # Security attribute template in proprietary format
+ISO::DATA-OBJECT-PAIR-TEMP                  A2  TEMP                      62, 6F  # Template consisting of one or more pairs of data objects: Short EF identifier (tag '88') - File reference (tag '51', L > 2)
+ISO::PROP-INFO                              A5  TEMP                      62, 6F  # Proprietary information encoded in BER-TLV
+ISO::SECURITY-ATTR-EXPANDED-TEMP            AB  TEMP                      62, 6F  # Security attribute template in expanded format
+ISO::CRYPT-MECHANISM-ID-TEMP                AC  TEMP                      62, 6F  # Cryptographic mechanism identifier template
+
+# Add sample data of complex tag template cases
+#   Program need to check value of complex tag.
+#      In this case, parent of A5 must be 6F and 6F must be global element(6F has no template)
+#      So template that contains more than 1 element must be absolute list of tag
+
+# When searching handler for tag A, ...
+#   If you can find "A" in tagMap, choose the corresponding tag handler.
+#   Otherwise error
+
+# When searching handler for tag A B C ... X Y Z, ...
+#   Sanity check
+#     Tag A to Z must be declared in Element.data
+#     Format of A to Z must be TEMP
+#     A must be global element (no template)
+#   If you can find "A B C ... X Y Z" in tagMap, choose the corresponding tag handler.                   -- exact match
+#   If you can find "B C ... X Y Z" in tagMap and B is global tag, choose the corresponding tag handler. -- partial match and longer match first
+#   If you can find "C ... X Y Z" in tagMap and C is global tag, choose the corresponding tag handler.   -- partial match and longer match first
+#   If you can find "X Y Z" in tagMap and X is global tag, choose the corresponding tag handler.         -- partial match and longer match first
+#   If you can find "Y Z" in tagMap and Y is global tag, choose the corresponding tag handler.           -- partial match and longer match first
+#   If you can find "Z" in tagMap and Z is global tag, choose the corresponding tag handler.             -- partial match and longer match first

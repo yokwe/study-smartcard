@@ -1,0 +1,95 @@
+#
+# Element.data
+#
+
+# See Element.LINE for format of line
+
+# ABBREVIATION
+#   AFI    APPLICATION-FAMILY-IDENTIFICATION
+#   APPL   APPLICATION
+#   ASSOC  ASSOCIATED
+#   ATTR   ATTRIBUTE
+#   AUTH   AUTHENTICATION
+#   BIC    BANK IDENTIFIER CODE
+#   BIO    BIOMETRIC
+#   CERT   CERTIFICATE
+#   CONFIG CONFIGURATION
+#   CRYPT  CRYPTOGRAPHIC
+#   DISC   DISCRETIONARY
+#   ENV    ENVIRONMENT
+#   IBAN   INTERNATIONAL BANK ACCOUNT NUMBER
+#   IC     INTEGRATED CIRCUIT
+#   ID     IDENTIFIER
+#   IIN    ISSUER IDENTIFICATION NUMBER
+#   INFO   INFORMATION
+#   LANG   LANGUAGE
+#   PAN    PRIMARY ACCOUNT NUMBER
+#   PREF   PREFERENCES
+#   PROP   PROPRIEATRY
+#   REF    REFERENCE
+#   REQ    REQUIREMENTS
+#   SEQ    SEQUENCE
+#   SFI    SHORT EF IDENTIFIER
+#   TAA    TAG ALLOCATION AUTHORITY
+#   TEMP   TEMPLATE
+#   URL    UNIFORM RESOURCE LOCATOR
+
+
+# From Globalplatform CardSpec 2.2  Page 119
+# 11.1.11 Tag Coding
+# All tags of GlobalPlatform data objects are coded as defined by ASN.1 BER-TLV rules (see ISO 8825-1).
+# For Security Domain data objects present in GlobalPlat form APDU messages,
+# BER-TLV tags are coded according to the following rules:
+# • '00' to '7E' – Reserved for use by ISO/IEC;
+# • '80' to '9E' and 'A0' to 'BE' – Reserved for use depending on the context (see note);
+# • 'C0' to 'DD' and 'E0' to 'FD' – Reserved for use by GlobalPlatform or individual schemes registered by GlobalPlatform;
+#    - 'CA' and 'EA' – Reserved for use by ETSI TS 102 226 specification;
+# • 'DE' and 'FE' – Reserved for proprietary use and not registered by GlobalPlatform;
+# • '1F 1F' to '7F 7F' – Reserved for use by ISO/IEC;
+# • '9F 1F' to '9F 7F' and 'BF 1F' to 'BF 7F' – Reserved for use depending on the context (see note)
+# • 'DF 1F' to 'DF 7F' and 'FF 1F' to 'FF 7F' – Reserved for use by GlobalPlatform or individual schemes registered by GlobalPlatform;
+#    - 'FF 1F' to 'FF 3F' – Reserved for use by ETSI TS 102 226 specification
+#
+# Note: Context dependant tags are assigned by the authority defining the context,
+# e.g. ISO/IEC for data objectsembedded in other ISO/IEC data objects or
+# GlobalPlatform for data objects embedded in other GlobalPlatform data objects.
+# Tag allocation for any data objects embedded in the constructed tag 'FE' (reserved for proprietary use) is beyond the
+# scope of this specification. Applying BER-TLV rules in this case is recommended
+
+
+# From Globalplatform CardSpec 2.2  Page 125  --  11.3.3.1  Data Field Returned in the Response Message
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+GP::KEY-INFO-TEMP                           E0  TEMP                           -  # Key Information template
+GP::KEY-INFO-DATA                           C0  GP::KEY-INFO-DATA             E0  # Key information data
+
+# From Globalplatform CardSpec 2.2  Page 130  --  11.4.3.1 Data Field Returned in the Response Message
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+GP::REGISTRY-RELATED-DATA                   E3  TEMP                           -  # GlobalPlatform Registry related data
+GP::LIEF-CYCLE-STATUS                     9F70  HEX                           E3  # Life Cycle State
+GP::PRIVILEGES                              C5  HEX                           E3  # Privileges (byte 1 - byte 2 - byte 3) see section 11.1.2
+GP::APPL-EXECUTABLE-LOAD-FILE-AID           C4  HEX                           E3  # Application's Executable Load File AID
+GP::EXECUTABLE-LOAD-FILE-VERSION-NUMBER     CE  HEX                           E3  # Executable Load File Version Number
+GP::EXECUTABLE-MODULE-AID                   84  HEX                           E3  # Executable Module AID
+GP::ASSOC-SECURITY-DOMAIN-AID               CC  HEX                           E3  # Associated Scurity Domain's AID
+
+
+# From Globalplatform CardSpec 2.2  Page 152  --  11.9.3.1 Data Field Returned in the Response Message
+GP::APPL-PRODUCT-LIFE-CYCLE-DATA          9F6E  HEX                        6F A5  # Application production Life Cycle data
+GP::MAX-LENGTH-DATA-FIELD                 9F65  HEX                        6F A5  # Maximum length of data field in command message
+
+
+# From Globalplatform CardSpec 2.2  Page 354  --  H.2 Structure of Card Recognition Data
+# From Globalplatform CardSpec 2.2  Page 355  --  H.3 Security Domain Management
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+GP::TAA                                     06  ISO::OID               66 73, 73  # OID for Card Recognition Data, also identifies Global Platform as the Tag Allocation Authority
+GP::CARD-MANAGEMENT-TYPE                    60  GP::OID-TEMP           66 73, 73  # OID for Card Management Type and Version
+GP::CARD-ID-SCHEME                          63  GP::OID-TEMP           66 73, 73  # OID for Card Identification Scheme
+GP::SECURE-CHANNEL-PROTOCOL                 64  GP::OID-TEMP           66 73, 73  # OID for Secure Channel Protocol of Issuer Security Domain and its implementation options
+GP::CARD-CONFIG-DETAIL                      65  GP::OID-TEMP           66 73, 73  # Card configuration detail
+GP::CARD-CHIP-DETAIL                        66  GP::OID-TEMP           66 73, 73  # Card / chip details
+GP::ISD-TRUST-POINT-CERT                    67  HEX                    66 73, 73  # Issuer Security Domain's Trust Point certificate information
+GP::ISD-TRUST-CERT                          68  HEX                    66 73, 73  # Issuer Security Domain certificate information
+
+
+# From ???
+GP::CPLC                                  9F7F  HEX                            -  # CPLC

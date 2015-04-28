@@ -1,0 +1,128 @@
+#
+# Element.data
+#
+
+# See Element.LINE for format of line
+
+# ABBREVIATION
+#   ADF    APPLICATION DEDICATED FILE
+#   AFI    APPLICATION FAMILY IDENTIFICATION
+#   AFL    APPLICATION FILE LOCATOR
+#   AID    APPLICATION IDENTIFIER
+#   APPL   APPLICATION
+#   ATTR   ATTRIBUTE
+#   AUTH   AUTHENTICATION
+#   BIC    BANK IDENTIFIER CODE
+#   BIO    BIOMETRIC
+#   CERT   CERTIFICATE
+#   CONFIG CONFIGURATION
+#   CRYPT  CRYPTOGRAPHIC
+#   DDF    DIRECTORY DEFINITION FILE
+#   DF     DEDICATED FILE
+#   DISC   DISCRETIONARY
+#   ENV    ENVIRONMENT
+#   IBAN   INTERNATIONAL BANK ACCOUNT NUMBER
+#   IC     INTEGRATED CIRCUIT
+#   ID     IDENTIFIER
+#   IIN    ISSUER IDENTIFICATION NUMBER
+#   INFO   INFORMATION
+#   LANG   LANGUAGE
+#   PAN    PRIMARY ACCOUNT NUMBER
+#   PREF   PREFERENCES
+#   PROP   PROPRIEATRY
+#   REF    REFERENCE
+#   REQ    REQUIREMENTS
+#   SEQ    SEQUENCE
+#   SFI    SHORT EF IDENTIFIER
+#   TAA    TAG ALLOCATION AUTHORITY
+#   TEMP   TEMPLATE
+#   URL    UNIFORM RESOURCE LOCATOR
+
+
+# From EMV Book 1  Version 4.3  Annex B1 Data Elements by Name  Page 155
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::ADF-NAME                               4F  HEX                           61  # Identifies the application as described in IOS/IEC 7816/4
+EMV::AID-TERMINAL                         9F06  HEX                            -  # Identifies the application as described in IOS/IEC 7816/4
+
+
+# From EMV Book 1  Version 4.3  Annex B1 Data Elements by Name  Page 156
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::APPL-LABEL                             50  ASCII                     61, A5  # Mnemonic associated with the AID according to IOS/IEC 7816/4
+EMV::APPL-PREFERRED-NAME                  9F12  ASCII                     61, A5  # Preferred mnemonic associated with the AID
+EMV::APPL-PRIORITY-INDICATOR                87  HEX                       61, A5  # Indicates the priority of a given application or group of applications in a directory
+EMV::APPL-TEMP                              61  TEMP                          70  # Contains one or more data objects relevant to an application directory entry according to ISO/IEC 7815-4
+
+
+# From EMV Book 1  Version 4.3  Annex B1 Data Elements by Name  Page 157
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::BIC                                  5F54  HEX                     BF0C, 73  # Uniquely identifies a bank as defined in ISO 9362
+EMV::DF-NAME                                84  HEX                           6F  # Identifies the name of the DF as described in ISO/IEC 7816-4
+EMV::DDF-NAME                               9D  HEX                           61  # Identifies the name of a DF associated with a directory
+EMV::DIRECTORY-DISC-TEMP                    73  TEMP                          61  # Issuer discretionary part of the directory according to ISO/IEC 7816-4
+EMV::FCI-ISSUER-DISC-DATA                 BF0C  TEMP                          A5  # FCI Issuer Discretionary Data
+EMV::FCI-PROP-TEMP                          A5  TEMP                          6F  # Identifies the data object proprietary to this specification in the FCI template according to ISO/IEC 7816-4
+EMV::FCI-TEMP                               6F  TEMP                           -  # Identifies the FCI template according to ISO/IEC 7816-4
+
+
+# From EMV Book 1  Version 4.3  Annex B1 Data Elements by Name  Page 158
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::IBAN                                 5F53  HEX                     BF0C, 73  # Uniquely identifies the account of a customer at a financial institution as define in ISO 13616
+EMV::ISSUER-CODE-TABLE-INDEX              9F11  HEX                           A5  # Indicates the code table according to ISO/IEC 8859 for displaying the Application Preferred name
+EMV::ISSUER-COUNTRY-CODE2                 5F55  ASCII                   BF0C, 73  # Indicate the country of the issuer as defined in ISO 3166 (using 2 character alphabetic code)
+EMV::ISSUER-COUNTRY-CODE3                 5F56  ASCII                   BF0C, 73  # Indicate the country of the issuer as defined in ISO 3166 (using 3 character alphabetic code)
+EMV::IIN                                    42  HEX                     BF0C, 73  # The number that identifies the major industry and the card issuer and that forms the first part of the Primary Account Number(PAN)
+EMV::ISSUER-URL                           5F50  ASCII                   BF0C, 73  # The URL provides the location of the issuer's Library Server on the Internet
+
+
+# From EMV Book 1  Version 4.3  Annex B1 Data Elements by Name  Page 159
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::LANG-PREF                            5F2D  ASCII                         A5  # 1-4 languages store in order of preference, each represented by 2 alphabetical character according to ISO 639
+EMV::LOG-ENTRY                            9F4D  HEX                     BF0C, 73  # Provides the SFI of the GTransaction Log file and its number of records
+EMV::PDOL                                 9F38  HEX                           A5  # Contains a list of terminal resident data objects(tags and lengths) needed by the ICC in processing the GET PROCESSING OPTIONS command
+EMV::READ-RECORD-RESPONSE-MESSAGE-TEMP      70  TEMP                           -  # Contains the contents of the record read. (Mandatory SFIs 1-10. Response message for SFIs 11-30 are outside the scope of EMV, but may use template '70'.)
+EMV::SFI                                    88  HEX                           A5  # Identifies the AEF referenced in commands related to a given ADF or DDF. It is a binary data object having a value in the range 1-30 and with the three high order bits set to zero.
+
+
+
+
+# From EMV Book 3  Version 4.3  Annex A1 Data Elements by Name  Page 127
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::ACCOUNT-TYPE                         5F57  HEX                            -  # Indicate the type of account selected on the terminal, coded as specified in Annex G
+EMV::ACQUIRER-ID                          9F01  HEX                            -  # Uniquely identifies the acquirer within each payment system
+EMV::ADDITIONAL-TERMINAL-CAPABILITIES     9F40  HEX                            -  # Indicates the data input and output capabilities of the terminal
+EMV::AMOUNT-AUTHORISED-BINARY               81  HEX                            -  # Authorised amount of the transaction(excluding adjustments)
+
+
+# From EMV Book 3  Version 4.3  Annex A1 Data Elements by Name  Page 128
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::AMOUNT-AUTHORISED-NUMERIC            9F02  HEX                            -  # Authorised amount of the transaction(excluding adjustments)
+EMV::AMOUNT-OTHER-BINARY                  9F04  HEX                            -  # Secondary amount of associated with the transaction representing a cashback amount
+EMV::AMOUNT-OTHER-NUMERIC                 9F03  HEX                            -  # Secondary amount of associated with the transaction representing a cashback amount
+EMV::AMOUNT-REFERENCE-CURRENCY            9F3A  HEX                            -  # Authorised amount expressed in the reference currency
+EMV::APPL-CRYPTOGRAM                      9F26  HEX                       77, 80  # Cryptogram returned by the ICC in response of the GENERATE AC command
+EMV::APPL-CURRENCY-CODE                   9F42  HEX                       70, 77  # Indicates the currency in which the account is managed according to ISO 4217
+EMV::APPL-CURRENCY-EXPONENT               9F44  HEX                       70, 77  # Indicates the implied position of the decimal point from the right of the amount represented according to ISO 4217
+EMV::APPL-DISC-DATA                       9F05  HEX                       70, 77  # Issuer or payment system specified data relating to the application
+EMV::APPL-EFFECTIVE-DATE                  5F25  HEX                       70, 77  # Date from which the application may be used
+
+
+# From EMV Book 3  Version 4.3  Annex A1 Data Elements by Name  Page 129
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::APPL-EXPIRATION-DATE                 5F24  HEX                       70, 77  # Date after which application expires
+EMV::AFL                                    94  HEX                       77, 80  # Indicate the location (SFI, range of records) of the AEFs related to a given application
+EMV::ADF-NAME                               4F  HEX                           61  # Identifies the application as described in ISO/IEC 7816-5
+EMV::AID-TERMINAL                         9F06  HEX                            -  # Identifies the application as described in ISO/IEC 7816-5
+EMV::APPL-INTERCHANGE-PROFILE               82  HEX                       77, 80  # Indicates the capabilities of the card to support specific functions in the application
+EMV::APPL-LABEL                             50  ASCII                     61, A5  # Mnemonic associated with the AID according to ISO/IEC 7816-5
+EMV::APPL-PREFERRED-NAME                  9F12  ASCII                     61, A5  # Preferred mnemonic associated with the AID
+EMV::APPL-PAN                               5A  HEX                       70, 77  # Valid cardholder account number
+
+
+# From EMV Book 3  Version 4.3  Annex A1 Data Elements by Name  Page 143
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
+EMV::RESPONSE-MESSAGE-TEMP-1                80  TEMP                           -  # Contains the data objects (without tags and lengths) returned by the ICC in response to a command
+EMV::RESPONSE-MESSAGE-TEMP-2                77  TEMP                           -  # Contains the data objects (without tags and lengths) returned by the ICC in response to a command
+
+
+# From EMV Book 3  Version 4.3  Annex A1 Data Elements by Name  Page 148
+# NAME                                     TAG  FORMAT                  TEMPLATE  COMMENT
